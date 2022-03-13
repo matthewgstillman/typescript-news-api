@@ -53,7 +53,6 @@ const APIComponent: FC = () => {
           <input {...register("topic")} />
           <input type="submit" />
         </form>
-        {topic}
         <div>
           {articles &&
             articles.map((article: IndividualArticle) => {
