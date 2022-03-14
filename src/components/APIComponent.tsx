@@ -2,11 +2,13 @@ import React, { useState, useEffect, FC, ChangeEvent } from "react";
 import "../App.css";
 import { useForm, SubmitHandler } from "react-hook-form";
 import ArticleComponent from "./ArticleComponent";
+import { Form, Button } from "react-bootstrap";
 
 const APIComponent: FC = () => {
   const apiKey = process.env.REACT_APP_API_KEY;
-  const [topic, setTopic] = useState<string | "">("James%Harden");
+  const [topic, setTopic] = useState<string | "">("America");
   const [articles, setArticles] = useState<IndividualArticle[]>([]);
+  const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
 
   const formatText = (unformattedText: string) => {
     const formattedString = unformattedText.replace(/ /g, "%20");
@@ -17,13 +19,11 @@ const APIComponent: FC = () => {
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     console.log(formatText(data.topic));
     setTopic(formatText(data.topic));
-    console.log(`Topic is now: ${formatText(data.topic)}`);
+    setFormSubmitted(true);
     getData(data.topic);
-    // return requestUrl;
   };
 
   const getData = async (topic: string) => {
-    console.log(`Getting data again now that the topic is ${topic}`);
     const response = await fetch(
       `https://newsapi.org/v2/everything?q=${topic}&from=2022-03-10&sortBy=publishedAt&language=en&sortby=popularity&apiKey=${apiKey}`
     );
@@ -46,13 +46,28 @@ const APIComponent: FC = () => {
   return (
     <div>
       <div className="App">
-        <h1>News API</h1>
+        <h1 className="mainHeader">News API</h1>
         <br />
-        <h1>Choose a news topic</h1>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <input {...register("topic")} />
-          <input type="submit" />
-        </form>
+        {formSubmitted ? (
+          <a href="/category">Click here to select news by news category</a>
+        ) : (
+          <></>
+        )}
+        <br />
+        <Form onSubmit={handleSubmit(onSubmit)}>
+          <Form.Group className="mb-3" controlId="topic">
+            <Form.Label>Choose a News Topic</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter news topic"
+              {...register("topic")}
+            />
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
+        <br />
         <div>
           {articles &&
             articles.map((article: IndividualArticle) => {

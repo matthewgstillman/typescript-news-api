@@ -1,25 +1,19 @@
 import React, { useState, useEffect, FC, ChangeEvent, FormEvent } from "react";
 import "../App.css";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { Form, Button } from "react-bootstrap";
 import ArticleComponent from "./ArticleComponent";
 
-const categories = [
-  "entertainment",
-  "general",
-  "health",
-  "science",
-  "sports",
-  "technology",
-];
-
-const APIComponent: FC = () => {
+const CategoryAPIComponent: FC = () => {
   const apiKey = process.env.REACT_APP_API_KEY;
   const [articles, setArticles] = useState<IndividualArticle[]>([]);
   const [category, setCategory] = useState<string | "">("");
+  const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
 
   const selectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
     setCategory(value);
+    setFormSubmitted(true);
     getData(value);
   };
 
@@ -45,33 +39,48 @@ const APIComponent: FC = () => {
   }, []);
 
   return (
-    <div style={styles.container}>
-      <select onChange={selectChange} style={styles.select}>
-        <option selected disabled>
-          Choose one
-        </option>
-        <option value="entertainment">Entertainment</option>
-        <option value="general">General</option>
-        <option value="health">Health</option>
-        <option value="science">Science</option>
-        <option value="sports">Sports</option>
-        <option value="technology">Technology</option>
-      </select>
+    <div className="App">
+      <h1 className="mainHeader">News API</h1>
+      {formSubmitted ? (
+        <a href="/">Click here to select news by specific news topic</a>
+      ) : (
+        <></>
+      )}
+      <br></br>
+      <br />
       <div>
-        {articles &&
-          articles.map((article: IndividualArticle) => {
-            return (
-              <ArticleComponent
-                urlToImage={article.urlToImage}
-                title={article.title}
-                description={article.description}
-                publishedAt={formatDate(article.publishedAt)}
-                content={article.content}
-                author={article.author}
-                url={article.url}
-              />
-            );
-          })}
+        <Form.Select
+          className="selectForm"
+          onChange={selectChange}
+          aria-label="Default select example"
+        >
+          <option selected disabled>
+            Choose one
+          </option>
+          <option value="entertainment">Entertainment</option>
+          <option value="general">General</option>
+          <option value="health">Health</option>
+          <option value="science">Science</option>
+          <option value="sports">Sports</option>
+          <option value="technology">Technology</option>
+        </Form.Select>
+        <br />
+        <div>
+          {articles &&
+            articles.map((article: IndividualArticle) => {
+              return (
+                <ArticleComponent
+                  urlToImage={article.urlToImage}
+                  title={article.title}
+                  description={article.description}
+                  publishedAt={formatDate(article.publishedAt)}
+                  content={article.content}
+                  author={article.author}
+                  url={article.url}
+                />
+              );
+            })}
+        </div>
       </div>
     </div>
   );
@@ -93,4 +102,4 @@ const styles: { [name: string]: React.CSSProperties } = {
   },
 };
 
-export default APIComponent;
+export default CategoryAPIComponent;
