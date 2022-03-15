@@ -14,6 +14,7 @@ interface IndividualArticle {
   title: string;
   url: string;
   urlToImage: string;
+  darkModeToggle?: boolean;
 }
 
 type FormValues = {

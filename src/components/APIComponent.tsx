@@ -17,7 +17,6 @@ const APIComponent: FC = () => {
 
   const { register, handleSubmit } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(formatText(data.topic));
     setTopic(formatText(data.topic));
     setFormSubmitted(true);
     getData(data.topic);
@@ -47,42 +46,44 @@ const APIComponent: FC = () => {
     <div>
       <div className="App">
         <h1 className="mainHeader">News API</h1>
-        <br />
-        {formSubmitted ? (
-          <a href="/category">Click here to select news by news category</a>
-        ) : (
-          <></>
-        )}
-        <br />
-        <Form onSubmit={handleSubmit(onSubmit)}>
-          <Form.Group className="mb-3" controlId="topic">
-            <Form.Label>Choose a News Topic</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter news topic"
-              {...register("topic")}
-            />
-          </Form.Group>
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Form>
-        <br />
-        <div>
-          {articles &&
-            articles.map((article: IndividualArticle) => {
-              return (
-                <ArticleComponent
-                  urlToImage={article.urlToImage}
-                  title={article.title}
-                  description={article.description}
-                  publishedAt={formatDate(article.publishedAt)}
-                  content={article.content}
-                  author={article.author}
-                  url={article.url}
-                />
-              );
-            })}
+        <div className="mainContainer">
+          <br />
+          {formSubmitted ? (
+            <a href="/category">Click here to select news by news category</a>
+          ) : (
+            <></>
+          )}
+          <br />
+          <Form onSubmit={handleSubmit(onSubmit)}>
+            <Form.Group className="mb-3" controlId="topic">
+              <Form.Label>Choose a News Topic</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter news topic"
+                {...register("topic")}
+              />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Form>
+          <br />
+          <div>
+            {articles &&
+              articles.map((article: IndividualArticle) => {
+                return (
+                  <ArticleComponent
+                    urlToImage={article.urlToImage}
+                    title={article.title}
+                    description={article.description}
+                    publishedAt={formatDate(article.publishedAt)}
+                    content={article.content}
+                    author={article.author}
+                    url={article.url}
+                  />
+                );
+              })}
+          </div>
         </div>
       </div>
     </div>

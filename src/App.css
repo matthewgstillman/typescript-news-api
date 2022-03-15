@@ -60,20 +60,20 @@
 .dark-mode-card {
   width: 80%;
   margin: 0 auto;
-  box-shadow: 3px 3px 6px 5px #ccc;
+  box-shadow: 3px 3px 6px 5px white;
   transition: 0.3s;
   padding: 40px;
-  background-color: black;
+  background-color: #121212;
   color: white;
 }
 
 .dark-mode-card:hover {
   width: 85%;
   margin: 0 auto;
-  box-shadow: 3px 3px 6px 5px #ccc;
+  box-shadow: 3px 3px 6px 5px white;
   transition: 0.3s;
   padding: 40px;
-  background-color: black;
+  background-color: #121212;
   color: white;
 }
 
@@ -96,18 +96,22 @@ select.selectForm.form-select {
 }
 
 .mainHeader {
-  background-color: black;
+  background-color: #121212;
   color: white;
 }
 
 #toggle {
-  width: 50px;
+  width: 20px;
   display: flex;
   padding: 5px;
-  background-color: #1a202c;
+  background-color: #121212;
   display: block;
   border-radius: 1000px;
   cursor: pointer;
   box-shadow: 0px 5px 20px -10px #000000;
   transition: background-color 0.2s ease-in;
+}
+
+.mainContainer {
+  padding: 10px;
 }

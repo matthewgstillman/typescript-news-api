@@ -18,7 +18,6 @@ const CategoryAPIComponent: FC = () => {
   };
 
   const getData = async (category: string) => {
-    console.log(`Getting data again now that the topic is ${category}`);
     const response = await fetch(
       `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${apiKey}`
     );
