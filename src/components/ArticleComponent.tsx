@@ -9,12 +9,15 @@ const ArticleComponent: FC<IndividualArticle> = ({
   url,
   author,
 }) => {
-  const [darkMode, setDarkMode] = useState<boolean>(false);
-
   return (
     <div>
-      <div className="card">
-        <img className="image" src={urlToImage} alt="" />
+      <div datatest-id="articleCard" className="card">
+        <img
+          datatest-id="imageFromUrl"
+          className="image"
+          src={urlToImage}
+          alt="imageFromUrl"
+        />
         <h1>{title}</h1>
         <h2>
           <i>{description}</i>

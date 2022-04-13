@@ -12,7 +12,7 @@ const App: FunctionComponent<IApplicationProps> = (props) => {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<APIComponent />} />
+          <Route datatest-id="homeRoute" path="/" element={<APIComponent />} />
           <Route path="/category" element={<CategoryAPIComponent />} />
         </Routes>
       </BrowserRouter>

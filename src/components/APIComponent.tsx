@@ -24,7 +24,7 @@ const APIComponent: FC = () => {
 
   const getData = async (topic: string) => {
     const response = await fetch(
-      `https://newsapi.org/v2/everything?q=${topic}&from=2022-03-10&sortBy=publishedAt&language=en&sortby=popularity&apiKey=${apiKey}`
+      `https://newsapi.org/v2/everything?q=${topic}&from=2022-04-13&sortBy=publishedAt&language=en&sortby=popularity&apiKey=${apiKey}`
     );
     const data = await response.json();
     setArticles(data["articles"]);
@@ -45,15 +45,8 @@ const APIComponent: FC = () => {
   return (
     <div>
       <div className="App">
-        <h1 className="mainHeader">News API</h1>
-        <div className="mainContainer">
-          <br />
-          {formSubmitted ? (
-            <a href="/category">Click here to select news by news category</a>
-          ) : (
-            <></>
-          )}
-          <br />
+        <div className="mainHeader">
+          <h1>News API</h1>
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group className="mb-3" controlId="topic">
               <Form.Label>Choose a News Topic</Form.Label>
@@ -63,10 +56,18 @@ const APIComponent: FC = () => {
                 {...register("topic")}
               />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button data-testid="APIButton" variant="primary" type="submit">
               Submit
             </Button>
           </Form>
+        </div>
+        <div className="mainContainer">
+          <br />
+          {formSubmitted ? (
+            <a href="/category">Click here to select news by news category</a>
+          ) : (
+            <></>
+          )}
           <br />
           <div>
             {articles &&

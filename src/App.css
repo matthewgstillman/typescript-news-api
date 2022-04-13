@@ -98,6 +98,7 @@ select.selectForm.form-select {
 .mainHeader {
   background-color: #121212;
   color: white;
+  padding: 10px 0 10px 0;
 }
 
 #toggle {
