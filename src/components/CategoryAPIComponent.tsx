@@ -38,7 +38,9 @@ const CategoryAPIComponent: FC = () => {
 
   return (
     <div className="App">
-      <h1 className="mainHeader">News API</h1>
+      <h1 className="mainHeader" data-testid="categoryAPIMainHeader">
+        News API
+      </h1>
       {formSubmitted ? (
         <a href="/">Click here to select news by specific news topic</a>
       ) : (
@@ -49,6 +51,7 @@ const CategoryAPIComponent: FC = () => {
       <div>
         <Form.Select
           className="selectForm"
+          data-testid="categorySelectForm"
           onChange={selectChange}
           aria-label="Default select example"
         >
@@ -82,22 +85,6 @@ const CategoryAPIComponent: FC = () => {
       </div>
     </div>
   );
-};
-
-const styles: { [name: string]: React.CSSProperties } = {
-  container: {
-    marginTop: 50,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  select: {
-    padding: 5,
-    width: 200,
-  },
-  result: {
-    marginTop: 30,
-  },
 };
 
 export default CategoryAPIComponent;
