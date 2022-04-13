@@ -57,3 +57,19 @@ test("Image from URL in document", () => {
     sampleArticleData.urlToImage
   );
 });
+
+test("Link with URL in document", () => {
+  render(
+    <ArticleComponent
+      urlToImage={sampleArticleData.urlToImage}
+      title={sampleArticleData.title}
+      description={sampleArticleData.description}
+      publishedAt={sampleArticleData.publishedAt}
+      content={sampleArticleData.content}
+      url={sampleArticleData.url}
+      author={sampleArticleData.author}
+    />
+  );
+  const linkFromUrlElement = screen.getByRole("link");
+  expect(linkFromUrlElement).toHaveAttribute("href", sampleArticleData.url);
+});
