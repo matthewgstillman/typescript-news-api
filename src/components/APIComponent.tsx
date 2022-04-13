@@ -46,17 +46,19 @@ const APIComponent: FC = () => {
     <div>
       <div className="App">
         <div className="mainHeader">
-          <h1>News API</h1>
-          <Form onSubmit={handleSubmit(onSubmit)}>
+          <h1 data-testid="mainHeader">News API</h1>
+          <Form data-testid="mainForm" onSubmit={handleSubmit(onSubmit)}>
             <Form.Group className="mb-3" controlId="topic">
-              <Form.Label>Choose a News Topic</Form.Label>
+              <Form.Label data-testid="formLabel">
+                Choose a News Topic
+              </Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter news topic"
                 {...register("topic")}
               />
             </Form.Group>
-            <Button data-testid="APIButton" variant="primary" type="submit">
+            <Button data-testid="submitButton" variant="primary" type="submit">
               Submit
             </Button>
           </Form>
