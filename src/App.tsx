@@ -1,5 +1,6 @@
 import React, { FC, FunctionComponent } from "react";
 import "./App.css";
+import "./Styles/index.css";
 import APIComponent from "./components/APIComponent";
 import CategoryAPIComponent from "./components/CategoryAPIComponent";
 import "bootstrap/dist/css/bootstrap.min.css";

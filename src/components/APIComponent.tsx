@@ -1,5 +1,6 @@
 import React, { useState, useEffect, FC, ChangeEvent } from "react";
 import "../App.css";
+import "../Styles/index.css";
 import { useForm, SubmitHandler } from "react-hook-form";
 import ArticleComponent from "./ArticleComponent";
 import { Form, Button } from "react-bootstrap";
