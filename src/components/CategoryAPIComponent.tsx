@@ -1,7 +1,7 @@
-import React, { useState, useEffect, FC, ChangeEvent, FormEvent } from "react";
+import React, { useState, useEffect, FC} from "react";
 import "../App.css";
 import "../Styles/index.css";
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import ArticleComponent from "./ArticleComponent";
 
 const CategoryAPIComponent: FC = () => {

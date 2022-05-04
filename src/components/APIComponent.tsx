@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FC, ChangeEvent } from "react";
+import React, { useState, useEffect, FC } from "react";
 import "../App.css";
 import "../Styles/index.css";
 import { useForm, SubmitHandler } from "react-hook-form";
